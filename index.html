@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carnival of Fun: Science 4 &amp; TLE 6</title>
+<style>
+:root{--bg:#fff4d6;--card:#fff;--ink:#2b1a3d;--red:#e63946;--yel:#ffb703;--blu:#3a86ff;--grn:#2a9d8f;--soft:#ffe8b0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1330;--card:#2c1f47;--ink:#fff1d6;--soft:#43306b}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,sans-serif;text-align:center;padding:0 12px 20px}
+.tent{height:46px;margin:0 -12px;background:repeating-linear-gradient(90deg,var(--red) 0 30px,#fff 30px 60px);border-radius:0 0 50% 50%/0 0 22px 22px}
+.lights{letter-spacing:8px;animation:bl 1.2s infinite alternate;font-size:.8rem}@keyframes bl{to{opacity:.35}}
+.wrap{max-width:540px;margin:0 auto}
+h1{font-size:1.5rem;margin:2px 0;color:var(--red)}h2{font-size:1rem;margin:12px 0 4px}
+.sub{opacity:.8;font-size:.85rem}.hide{display:none!important}
+.card{background:var(--card);border-radius:18px;padding:12px;box-shadow:0 3px 10px #0003;margin:8px 0}
+button{font:inherit;cursor:pointer;border:0;border-radius:14px;color:inherit}
+.b{background:var(--red);color:#fff;padding:11px 18px;font-weight:800;margin:4px}.b.alt{background:var(--soft);color:var(--ink)}
+.chip{background:var(--soft);padding:8px 12px;margin:3px;font-weight:700;border:2px solid transparent}.chip.on{border-color:var(--red)}
+input,select,textarea{font:inherit;color:inherit;background:var(--soft);border:0;border-radius:10px;padding:8px}
+textarea{width:100%;height:150px;font-size:.78rem;text-align:left}
+.pl{display:inline-flex;gap:4px;align-items:center;margin:3px}.pl input{width:120px}
+.sb{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}.tm{background:var(--card);border-radius:12px;padding:6px 10px;font-weight:800;border:3px solid transparent;font-size:.9rem}.tm.cur{border-color:var(--yel)}
+.mid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.booth{background:var(--card);border-radius:18px;padding:12px 6px;box-shadow:0 4px 0 var(--red);font-weight:800}
+.booth .e{font-size:3rem;display:block;animation:bob 2s infinite alternate}.booth small{display:block;font-weight:500;opacity:.75;font-size:.72rem}
+@keyframes bob{to{transform:translateY(-5px) rotate(4deg)}}
+.hud{display:flex;justify-content:space-between;font-weight:800;margin-top:8px}
+.bar{height:10px;background:var(--soft);border-radius:6px;overflow:hidden;margin:5px 0}.bar i{display:block;height:100%;background:var(--red);width:100%;transition:width 1s linear}
+.pic{font-size:3.6rem;line-height:1.1}.q{font-size:1.1rem;font-weight:800;margin:4px 0}
+.sky{position:relative;height:330px;overflow:hidden;border-radius:16px;background:linear-gradient(#8ecae6,#e0f4ff)}
+.bal{position:absolute;bottom:-120px;width:92px;height:108px;border-radius:50% 50% 50% 50%/58% 58% 42% 42%;color:#fff;font-weight:800;font-size:.78rem;display:flex;align-items:center;justify-content:center;padding:6px;line-height:1.1;cursor:pointer;animation:rise 9s linear forwards;box-shadow:inset -8px -8px 0 #0002}
+.bal::after{content:"";position:absolute;bottom:-30px;left:50%;width:2px;height:30px;background:#555}
+@keyframes rise{to{transform:translateY(-470px)}}
+.bal.x{animation:none;opacity:0;transition:.2s;transform:scale(1.6)}
+.holes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hole{aspect-ratio:1;border-radius:50% 50% 14px 14px;background:#6b4423;position:relative;overflow:hidden;cursor:pointer;display:flex;align-items:flex-end;justify-content:center}
+.mole{position:absolute;bottom:-100%;transition:bottom .15s;display:flex;flex-direction:column;align-items:center;font-size:2.6rem;line-height:1}
+.mole span{font-size:.68rem;font-weight:800;background:#fff;color:#2b1a3d;border-radius:8px;padding:1px 5px;margin-top:1px}
+.hole.up .mole{bottom:4px}.hole.hit{background:var(--grn)}.hole.bad{background:var(--red)}
+.target{font-size:1.15rem;font-weight:900;background:var(--yel);color:#2b1a3d;border-radius:12px;padding:6px;margin:6px 0}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.opt{background:var(--soft);padding:14px 6px;font-weight:800}
+.ok{background:var(--grn)!important;color:#fff}.no{background:var(--red)!important;color:#fff}
+#wheel{width:250px;height:250px;transition:transform 3.4s cubic-bezier(.15,.7,.1,1)}
+.ptr{font-size:2rem;margin-bottom:-14px;position:relative;z-index:2}
+.mg{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.mc{aspect-ratio:1;background:var(--blu);color:#fff;font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;border-radius:12px;padding:2px;line-height:1.1}
+.mc.up{background:var(--soft);color:var(--ink)}.mc.dn{background:var(--grn);color:#fff}
+.pb{height:12px;background:var(--soft);border-radius:8px;overflow:hidden;margin:2px 0 8px}.pb i{display:block;height:100%;background:var(--grn)}
+#md{position:fixed;inset:0;background:#000b;display:flex;align-items:center;justify-content:center;padding:14px;z-index:7}
+#mc{background:var(--card);border-radius:22px;padding:18px;width:100%;max-width:400px;max-height:90vh;overflow:auto}
+.row{display:flex;justify-content:space-between;padding:8px 12px;border-radius:10px;background:var(--soft);margin:5px 0;font-weight:700}.row.w{background:var(--yel);color:#2b1a3d}
+.fall{position:fixed;top:-30px;font-size:1.8rem;animation:fl 2.4s linear forwards;pointer-events:none;z-index:9}@keyframes fl{to{transform:translateY(110vh) rotate(360deg)}}
+</style></head><body>
+<div class="tent"></div><div class="lights">🔴🟡🟢🔵🔴🟡🟢🔵🔴🟡🟢🔵</div>
+<div class="wrap">
+<div id="home">
+ <h1>🎪 Carnival of Fun 🎪</h1>
+ <div class="sub">Science 4 &amp; TLE 6 · Win 🎟️ tickets at every booth!</div>
+ <div class="card"><h2>Pick your subject</h2><div id="subs"></div>
+  <h2>Players / Teams</h2><select id="pn"><option value="1">1 (Solo)</option><option>2</option><option>3</option><option selected>4</option></select>
+  <div id="pnames"></div>
+  <h2>Game time</h2><select id="time"><option value="60">1 minute</option><option value="90">1 min 30 sec</option><option value="120">2 minutes</option></select></div>
+ <div class="sb" id="sb"></div>
+ <div class="mid">
+  <button class="booth" data-g="bal"><span class="e">🎈</span>Balloon Pop<small>Pop the right answer!</small></button>
+  <button class="booth" data-g="mol"><span class="e">🐹</span>Whack-a-Mole<small>Whack the right group!</small></button>
+  <button class="booth" data-g="spin"><span class="e">🎡</span>Spin &amp; Win<small>Spin, then answer!</small></button>
+  <button class="booth" data-g="mem"><span class="e">🃏</span>Memory Match<small>Find the pairs!</small></button>
+ </div>
+ <button class="b" id="prize">🎁 Prize Booth</button><button class="b" id="win">🏆 Winner</button><button class="b alt" id="edit">✏️ Edit</button>
+</div>
+
+<div id="editor" class="hide">
+ <h1>✏️ Edit Games</h1><div class="sub" id="esub"></div>
+ <div class="card"><h2>Questions: Topic | Picture emoji | Question | Correct | Wrong | (Wrong)</h2><textarea id="tq"></textarea>
+ <h2>Sorting (Whack-a-Mole): Emoji + item | Group</h2><textarea id="ts" style="height:100px"></textarea>
+ <h2>Memory pairs: Item | Meaning (need 3+)</h2><textarea id="tp" style="height:100px"></textarea></div>
+ <button class="b" id="save">💾 Save</button><button class="b alt" id="reset">Reset</button><button class="b alt" id="back">← Back</button><div class="sub" id="emsg"></div>
+</div>
+
+<div id="play" class="hide">
+ <div class="hud"><span id="pt"></span><span>🎟️ <span id="ps">0</span></span><span>⏱ <span id="pc"></span></span></div>
+ <div class="bar"><i id="pbar"></i></div>
+ <div id="pb"></div>
+ <button class="b alt" id="fin">⏹ Finish</button>
+</div>
+</div>
+<div id="md" class="hide"><div id="mc"></div></div>
+
+<script>
+const SUBJ=[{k:'s',ic:'🔬',n:'Science 4: Force',d:[`Push or Pull|🚪|Pushing a door is a...|Push|Pull
+Push or Pull|🗄️|Opening a drawer is a...|Pull|Push
+Push or Pull|🧹|Sweeping with a broom is a...|Push|Pull
+Push or Pull|🧳|Pulling a travel bag is a...|Pull|Push
+Push or Pull|⚽|Kicking a ball is a...|Push|Pull
+Push or Pull|🛒|Moving a shopping cart forward is a...|Push|Pull
+Push or Pull|🪢|Tug of war is mostly a...|Pull|Push
+Push or Pull|🛷|Pulling a sled is a...|Pull|Push
+Rigid or Soft|🪨|A rock is...|Rigid|Soft
+Rigid or Soft|🧽|A sponge is...|Soft|Rigid
+Rigid or Soft|🪑|A chair is...|Rigid|Soft
+Rigid or Soft|🛏️|A pillow is...|Soft|Rigid
+Rigid or Soft|🥄|A metal spoon is...|Rigid|Soft
+Rigid or Soft|🧣|A cloth is...|Soft|Rigid
+Effects of Force|🚲|A force makes the bike go faster. What changed?|Speed|Direction|Shape
+Effects of Force|🥅|A goalkeeper stops the ball. What changed?|Speed|Shape|Direction
+Effects of Force|🏏|A bat sends the ball back. What changed?|Direction|Speed|Shape
+Effects of Force|✊|Squeezing a sponge changes its...|Shape|Speed|Direction
+Direction of Force|⬆️|The arrow points up. The force acts...|Upward|Downward|Left
+Direction of Force|⬇️|The arrow points down. The force acts...|Downward|Upward|Right
+Direction of Force|➡️|The arrow points right. The force acts...|Right (forward)|Left (backward)|Upward
+Direction of Force|⬅️|The arrow points left. The force acts...|Left (backward)|Right (forward)|Downward
+Force Facts|💪|A force is a...|Push or pull|Color|Sound
+Force Facts|🏃|A push moves an object ___ you.|Away from|Toward|Around
+Force Facts|🧲|A pull moves an object ___ you.|Toward|Away from|Over
+Force Facts|🛡️|We should use force...|Safely|Roughly|Carelessly`,`🚪 Pushing a door|Push
+🗄️ Opening a drawer|Pull
+🧹 Sweeping|Push
+🧳 Pulling a bag|Pull
+⚽ Kicking a ball|Push
+🛷 Pulling a sled|Pull
+🪨 Rock|Rigid
+🥄 Metal spoon|Rigid
+🪑 Chair|Rigid
+🧽 Sponge|Soft
+🛏️ Pillow|Soft
+🧣 Cloth|Soft`,`⬆️ Arrow up|Upward
+⬇️ Arrow down|Downward
+➡️ Arrow right|Right (forward)
+⬅️ Arrow left|Left (backward)
+🚲 Bike goes faster|Speed
+🧽 Squeezed sponge|Shape`]},{k:'f',ic:'🍳',n:'TLE 6 · FCS',d:[`Kitchen Tools|🥄|Which tool is used for stirring, mixing and serving food?|Spoon|Fork|Peeler
+Kitchen Tools|🍴|Which tool is used for picking up and holding food?|Fork|Whisk|Grater
+Kitchen Tools|🔪|Which tool is used for cutting and slicing food?|Kitchen knife|Spoon|Whisk
+Kitchen Tools|🪵|The chopping board gives a safe ___ for cutting food.|Surface|Handle|Heater
+Kitchen Tools|🥕|Which tool removes the skin of fruits and vegetables?|Peeler|Grater|Mixing bowl
+Kitchen Tools|🧀|Which tool is used for shredding or grating food?|Grater|Peeler|Fork
+Kitchen Tools|🥣|Which tool is used for mixing ingredients?|Mixing bowl|Chopping board|Measuring spoon
+Kitchen Tools|🥄|Which tool measures small amounts of ingredients?|Measuring spoon|Measuring cup|Whisk
+Kitchen Tools|🥛|Which tool measures liquids and dry ingredients?|Measuring cup|Peeler|Fork
+Kitchen Tools|🥚|Which tool is used for beating ingredients?|Whisk|Spoon|Grater
+Tool or Equipment|🔪|A kitchen knife is a...|Tool|Equipment
+Tool or Equipment|🧊|A refrigerator is...|Equipment|Tool
+Tool or Equipment|🍚|A rice cooker is...|Equipment|Tool
+Tool or Equipment|🥄|A spoon is a...|Tool|Equipment
+Tool or Equipment|🔥|A stove is...|Equipment|Tool
+Tool or Equipment|🥤|A blender is...|Equipment|Tool
+Tool or Equipment|🥕|A peeler is a...|Tool|Equipment
+Tool or Equipment|🥧|An oven is...|Equipment|Tool
+Equipment Safety|🍳|Use carefully around heat and hot oil. Which equipment?|Frying pan|Refrigerator|Blender
+Equipment Safety|🍲|Use pot holders when hot. Which equipment?|Cooking pot|Rice cooker|Refrigerator
+Equipment Safety|🔥|Keep flammable objects away from the flame. Which equipment?|Stove|Blender|Refrigerator
+Equipment Safety|🍚|Keep electrical parts dry. Which equipment?|Rice cooker|Cooking pot|Frying pan
+Equipment Safety|🧊|Keep the door closed properly. Which equipment?|Refrigerator|Oven|Stove
+Equipment Safety|🧤|Use oven mitts when handling hot items. Which equipment?|Oven|Refrigerator|Blender
+Equipment Safety|🥤|Make sure the lid is secure before operating. Which equipment?|Blender|Oven|Stove
+Equipment Safety|🍰|Turn it off before removing the beaters. Which equipment?|Electric mixer|Stove|Frying pan`,`🔪 Kitchen knife|Tool
+🥄 Spoon|Tool
+🥕 Peeler|Tool
+🥛 Measuring cup|Tool
+🥚 Whisk|Tool
+🧀 Grater|Tool
+🧊 Refrigerator|Equipment
+🍚 Rice cooker|Equipment
+🥤 Blender|Equipment
+🔥 Stove|Equipment
+🥧 Oven|Equipment
+🍳 Frying pan|Equipment`,`🔪 Kitchen knife|Cutting and slicing food
+🥕 Peeler|Removing skin of vegetables
+🧀 Grater|Shredding food
+🥚 Whisk|Beating ingredients
+🪵 Chopping board|Surface for cutting
+🥣 Mixing bowl|Mixing ingredients
+🥄 Measuring spoon|Measuring small amounts
+🥛 Measuring cup|Measuring liquids and dry ingredients
+🍚 Rice cooker|Cooking rice
+🧊 Refrigerator|Keeps food cold`]},{k:'i',ic:'💻',n:'TLE 6 · ICT',d:[`Word Features|💧|Which feature places faint text behind the content?|Watermark|Header|Page Color
+Word Features|🎨|Which feature changes the background color of the page?|Page Color|Watermark|Footer
+Word Features|🖼️|Which feature adds a line or design around the page?|Page Border|Page Number|Header
+Word Features|🔢|Which feature shows the number of each page?|Page Number|Footer|Watermark
+Word Features|⬆️|Information placed at the top of every page goes in the...|Header|Footer|Border
+Word Features|⬇️|Information placed at the bottom of every page goes in the...|Footer|Header|Watermark
+Word Features|📝|You want to mark a document as "SAMPLE". Which feature?|Watermark|Page Border|Page Number
+Steps|🧭|Which tab has Watermark, Page Color and Page Borders?|Design|Insert|Home
+Steps|🧭|Which tab has Page Number, Header and Footer?|Insert|Design|View
+Steps|🖱️|Design → Page Borders → select a border style → ...|OK|Print|Delete
+Steps|🔢|To add page numbers, go to Insert → ...|Page Number|Watermark|Page Color
+My School Sheet|🏫|The header of the My School sheet is the...|Name of school|Learner's name|Page number
+My School Sheet|👤|The footer of the My School sheet is the...|Learner's name and grade/section|Name of school|Watermark
+My School Sheet|🏷️|The watermark for the My School sheet is...|SCHOOL|DRAFT|SAMPLE
+My School Sheet|📜|The certificate's footer shows the...|School year|Recipient's name|Header
+My School Sheet|✍️|The school information sheet needs how many sentences?|5 to 7|1 to 2|20 or more
+Basics|📄|Word documents are saved with this extension.|.docx|.mp3|.png
+Basics|✨|Why use formatting features?|To make documents organized and presentable|To delete text|To slow the computer
+Basics|💻|Which program is used to make a Word document?|Microsoft Word|Calculator|Paint`,`💧 Watermark|Design Tab
+🎨 Page Color|Design Tab
+🖼️ Page Borders|Design Tab
+🔢 Page Number|Insert Tab
+⬆️ Header|Insert Tab
+⬇️ Footer|Insert Tab`,`💧 Watermark|Faint text behind the content
+🎨 Page Color|Changes the page background
+🖼️ Page Border|Line or design around the page
+🔢 Page Number|Shows the number of each page
+⬆️ Header|Top of every page
+⬇️ Footer|Bottom of every page`]}];
+const $=id=>document.getElementById(id),R=a=>a[Math.random()*a.length|0],S=a=>[...a].sort(()=>Math.random()-.5);
+const AV=["🦊","🐯","🐼","🦄"],PR=[[20,"🍬","Candy"],[50,"🧸","Teddy bear"],[100,"🏅","Medal"],[150,"🏆","Grand trophy"]];
+let si=0,Q=[],SO=[],PA=[],teams=[],ti=0,G=null;
+function rd(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}}
+function ld(){const s=SUBJ[si];["tq","ts","tp"].forEach((id,n)=>$(id).value=rd("car"+s.k+n,s.d[n]));parse()}
+function sp(id,m){return $(id).value.split("\n").map(l=>l.split("|").map(x=>x.trim())).filter(p=>p.length>=m&&p[0])}
+function parse(){Q=sp("tq",5).map(p=>({c:p[0],p:p[1],q:p[2],a:p[3],w:p.slice(4).filter(Boolean)}));SO=sp("ts",2).map(p=>({t:p[0],g:p[1]}));PA=sp("tp",2).map(p=>({a:p[0],b:p[1]}));$("esub").textContent=SUBJ[si].ic+" "+SUBJ[si].n}
+function show(id){["home","editor","play"].forEach(x=>$(x).classList.toggle("hide",x!==id))}
+function subs(){$("subs").innerHTML=SUBJ.map((s,i)=>`<button class="chip ${i==si?"on":""}" data-i="${i}">${s.ic} ${s.n}</button>`).join("");
+ $("subs").querySelectorAll(".chip").forEach(e=>e.onclick=()=>{si=+e.dataset.i;subs();ld()})}
+function pn(){const n=+$("pn").value;$("pnames").innerHTML=Array.from({length:n},(_,i)=>`<span class="pl">${AV[i]}<input value="${n==1?"Player":"Team "+(i+1)}" maxlength="12"></span>`).join("")}
+function sb(){$("sb").innerHTML=teams.map((t,i)=>`<div class="tm ${i==ti?"cur":""}">${t.av} ${t.n} 🎟️${t.t}</div>`).join("")}
+function mk(){const n=+$("pn").value;teams=[...$("pnames").querySelectorAll("input")].map((e,i)=>({av:AV[i],n:e.value||"Team "+(i+1),t:0}));ti=0;sb()}
+$("pn").onchange=()=>{pn();mk()};$("pnames").oninput=()=>{const t=teams.map(x=>x.t);mk();teams.forEach((x,i)=>x.t=t[i]||0);sb()};
+$("edit").onclick=()=>{ld();show("editor")};$("back").onclick=()=>{ld();show("home")};
+$("save").onclick=()=>{parse();try{["tq","ts","tp"].forEach((id,n)=>localStorage.setItem("car"+SUBJ[si].k+n,$(id).value))}catch(e){}$("emsg").textContent=`✅ Saved: ${Q.length} questions, ${SO.length} sorting items, ${PA.length} pairs`};
+$("reset").onclick=()=>{try{[0,1,2].forEach(n=>localStorage.removeItem("car"+SUBJ[si].k+n))}catch(e){}ld();$("emsg").textContent="Reset to default."};
+function modal(h){$("mc").innerHTML=h;$("md").classList.remove("hide")}
+function party(){for(let k=0;k<26;k++){const e=document.createElement("div");e.className="fall";e.textContent=["🎉","🎟️","🎈","🏆","🎪"][k%5];e.style.left=Math.random()*95+"vw";e.style.animationDelay=Math.random()*.9+"s";document.body.appendChild(e);setTimeout(()=>e.remove(),3400)}}
+$("prize").onclick=()=>modal(`<h1>🎁 Prize Booth</h1>${PR.map(p=>`<div class="card"><div class="pic">${p[1]}</div><b>${p[2]}</b> · ${p[0]} 🎟️<div>${teams.filter(t=>t.t>=p[0]).map(t=>t.av+" "+t.n).join(", ")||"<small>No winners yet</small>"}</div></div>`).join("")}<button class="b" onclick="$('md').classList.add('hide')">Close</button>`);
+$("win").onclick=()=>{const r=[...teams].sort((a,b)=>b.t-a.t);modal(`<h1>🏆 ${r[0].t?r[0].av+" "+r[0].n+" leads!":"No tickets yet"}</h1>${r.map((t,i)=>`<div class="row ${i==0&&t.t?"w":""}"><span>${i+1}. ${t.av} ${t.n}</span><span>🎟️ ${t.t}</span></div>`).join("")}<button class="b" onclick="$('md').classList.add('hide')">Close</button>`);if(r[0].t)party()};
+document.querySelectorAll(".booth").forEach(b=>b.onclick=()=>{parse();
+ const g=b.dataset.g;if(Q.length<4||(g=="mol"&&new Set(SO.map(x=>x.g)).size<2)||(g=="mem"&&PA.length<3)){alert("Not enough items. Open ✏️ Edit and add more.");return}
+ start(g)});
+// ---- engine
+function start(g){const T=+$("time").value;G={s:0,l:T,T,iv:[],g};show("play");$("ps").textContent=0;
+ $("pt").textContent=teams[ti].av+" "+teams[ti].n;$("pb").innerHTML="";tick();G.iv.push(setInterval(tick,1000));
+ ({bal,mol,spin,mem})[g]($("pb"))}
+function tick(){if(!G)return;$("pc").textContent=Math.floor(G.l/60)+":"+String(G.l%60).padStart(2,"0");$("pbar").style.width=(G.l/G.T*100)+"%";if(G.l<=0){end();return}G.l--}
+function add(n){G.s=Math.max(0,G.s+n);$("ps").textContent=G.s}
+function end(extra){if(!G)return;G.iv.forEach(clearInterval);if(G.stop)G.stop();const n=G.s+(extra||0);teams[ti].t+=n;G=null;
+ modal(`<div class="pic">🎟️</div><h1>${n} tickets!</h1><div>${teams[ti].av} ${teams[ti].n} earned ${n} 🎟️</div>${teams.length>1?`<div class="sub">Next up: ${teams[(ti+1)%teams.length].av} ${teams[(ti+1)%teams.length].n}</div>`:""}<button class="b" id="ct">Continue</button>`);
+ if(n>0)party();$("ct").onclick=()=>{$("md").classList.add("hide");ti=(ti+1)%teams.length;sb();show("home")}}
+$("fin").onclick=()=>end();
+// ---- Balloon Pop
+function bal(pb){let deck=[],cur;
+ pb.innerHTML=`<div class="card" id="bq"></div><div class="sky" id="sky"></div>`;
+ const nq=()=>{if(!G)return;if(!deck.length)deck=S(Q);cur=deck.pop();$("bq").innerHTML=`<div class="pic">${cur.p}</div><div class="q">${cur.q}</div>`;sp2()};
+ function sp2(){const sky=$("sky");sky.innerHTML="";const o=S([cur.a,...cur.w]),W=sky.clientWidth||340;
+  o.forEach((t,i)=>{const b=document.createElement("div");b.className="bal";b.style.left=(8+i*((W-110)/o.length)+Math.random()*10)+"px";b.style.background=`hsl(${i*85+Math.random()*30},75%,52%)`;
+   b.style.animationDuration=(8+Math.random()*3)+"s";b.style.animationDelay=(i*.5)+"s";b.textContent=t;
+   b.onclick=()=>{if(b.classList.contains("x"))return;b.classList.add("x");if(t==cur.a){add(10);nq()}else add(-3)};
+   if(t==cur.a)b.addEventListener("animationend",()=>{if(!b.classList.contains("x"))nq()});sky.appendChild(b)})}
+ nq()}
+// ---- Whack-a-Mole
+function mol(pb){const gs=[...new Set(SO.map(x=>x.g))],[A,B]=S(gs).slice(0,2);
+ const items=SO.filter(x=>x.g==A||x.g==B),tg=items.filter(x=>x.g==A),ot=items.filter(x=>x.g==B);
+ pb.innerHTML=`<div class="target">🔨 Whack only: ${A}!</div><div class="holes" id="hs">${Array.from({length:9},()=>`<div class="hole"><div class="mole"></div></div>`).join("")}</div><div class="sub">Careful! Wrong ones: ${B} 🙅</div>`;
+ const hs=[...document.querySelectorAll(".hole")];
+ hs.forEach(h=>h.onclick=()=>{if(!h.classList.contains("up")||h.dataset.d)return;h.dataset.d=1;const ok=h.dataset.g==A;add(ok?10:-5);h.classList.add(ok?"hit":"bad");setTimeout(()=>{h.classList.remove("up","hit","bad");delete h.dataset.d},350)});
+ const pop=()=>{const f=hs.filter(h=>!h.classList.contains("up"));if(!f.length)return;const h=R(f),it=Math.random()<.55?R(tg):R(ot.length?ot:tg);
+  h.dataset.g=it.g;h.querySelector(".mole").innerHTML=`🐹<span>${it.t}</span>`;h.classList.add("up");setTimeout(()=>{if(!h.dataset.d)h.classList.remove("up")},1500)};
+ G.iv.push(setInterval(pop,800));pop()}
+// ---- Spin & Win
+function spin(pb){const tp=[...new Set(Q.map(q=>q.c))],n=tp.length,sg=360/n,cs=["#e63946","#ffb703","#3a86ff","#2a9d8f","#9b5de5","#f15bb5","#fb8500","#00bbf9"];
+ let rot=0,busy=false,svg="";
+ for(let i=0;i<n;i++){const a0=(i*sg-90)*Math.PI/180,a1=((i+1)*sg-90)*Math.PI/180,m=(a0+a1)/2,p=x=>x.toFixed(1);
+  svg+=`<path d="M125 125 L${p(125+120*Math.cos(a0))} ${p(125+120*Math.sin(a0))} A120 120 0 ${sg>180?1:0} 1 ${p(125+120*Math.cos(a1))} ${p(125+120*Math.sin(a1))} Z" fill="${cs[i%8]}" stroke="#fff" stroke-width="3"/><text x="${p(125+78*Math.cos(m))}" y="${p(125+78*Math.sin(m)+10)}" font-size="${n>6?26:32}" text-anchor="middle">${Q.find(q=>q.c==tp[i]).p}</text>`}
+ pb.innerHTML=`<div class="ptr">🔻</div><svg id="wheel" viewBox="0 0 250 250">${svg}<circle cx="125" cy="125" r="14" fill="#fff"/></svg><div><button class="b" id="sp">🎡 SPIN!</button></div><div id="sq"></div>`;
+ $("sp").onclick=()=>{if(busy)return;busy=true;$("sq").innerHTML="";rot+=1440+Math.random()*360;$("wheel").style.transform=`rotate(${rot}deg)`;
+  setTimeout(()=>{if(!G)return;const idx=Math.floor(((360-(rot%360))%360)/sg),t=tp[idx],b=R(Q.filter(q=>q.c==t));
+   $("sq").innerHTML=`<div class="card"><div class="sub">${t}</div><div class="pic">${b.p}</div><div class="q">${b.q}</div><div class="opts">${S([b.a,...b.w]).map(o=>`<button class="opt">${o}</button>`).join("")}</div></div>`;
+   $("sq").querySelectorAll(".opt").forEach(e=>e.onclick=()=>{if(!busy)return;busy=false;const ok=e.textContent==b.a;e.classList.add(ok?"ok":"no");if(ok)add(15);else[...$("sq").querySelectorAll(".opt")].find(x=>x.textContent==b.a).classList.add("ok")})},3500)}}
+// ---- Memory Match
+function mem(pb){const ps=S(PA).slice(0,6);let cards=[];ps.forEach((p,k)=>cards.push({k,e:p.a},{k,e:p.b}));cards=S(cards);
+ let open=[],lock=false,found=0;
+ pb.innerHTML=`<div class="sub">Match each item with its meaning!</div><div class="pb"><i id="mp" style="width:0"></i></div><div class="mg" id="mg"></div>`;
+ const rn=()=>{$("mg").innerHTML=cards.map((c,i)=>`<div class="mc ${c.d?"dn":open.includes(i)?"up":""}" data-i="${i}">${c.d||open.includes(i)?c.e:"❔"}</div>`).join("");
+  $("mg").querySelectorAll(".mc").forEach(e=>e.onclick=()=>{const i=+e.dataset.i;if(lock||cards[i].d||open.includes(i))return;open.push(i);rn();
+   if(open.length==2){lock=true;const[a,b]=open.map(j=>cards[j]);setTimeout(()=>{if(a.k==b.k){a.d=b.d=true;found++;add(15);$("mp").style.width=(found/ps.length*100)+"%"}open=[];lock=false;rn();if(found==ps.length)setTimeout(()=>end(Math.floor(G.l/3)),300)},750)}})};
+ rn()}
+subs();pn();mk();ld();
+</script></body></html>
